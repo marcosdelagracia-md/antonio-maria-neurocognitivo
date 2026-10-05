@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<!-- Novo deploy GitHub Pages -->
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +18,19 @@
       background: #0f172a;
       color: #ffffff;
       min-height: 100vh;
+    }
+
+    .tela {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 32px 24px;
     }
 
     .container {
       width: 100%;
-      max-width: 760px;
+      max-width: 900px;
       text-align: center;
     }
 
@@ -63,8 +67,6 @@
       color: #94a3b8;
       line-height: 1.6;
       font-size: 17px;
-      max-width: 600px;
-      margin: 0 auto 32px;
     }
 
     button {
@@ -87,39 +89,214 @@
       font-size: 13px;
       color: #64748b;
     }
+
+    /* TELA DOS CASOS */
+
+    #casos {
+      display: none;
+    }
+
+    .titulo-casos {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    .instrucao {
+      margin: 0 auto 30px;
+      max-width: 680px;
+    }
+
+    .grade-casos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin: 30px 0;
+      text-align: left;
+    }
+
+    .caso {
+      background: #172033;
+      border: 1px solid #273449;
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .caso h3 {
+      margin: 0 0 4px;
+      font-size: 27px;
+    }
+
+    .idade {
+      color: #60a5fa;
+      font-weight: bold;
+      margin-bottom: 22px;
+    }
+
+    .caso p {
+      color: #cbd5e1;
+      font-size: 16px;
+      margin-bottom: 18px;
+    }
+
+    .dado-clinico {
+      background: #0f172a;
+      border-left: 4px solid #60a5fa;
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .aviso {
+      font-size: 14px;
+      color: #64748b;
+      margin: 24px 0;
+    }
+
+    @media (max-width: 700px) {
+      .grade-casos {
+        grid-template-columns: 1fr;
+      }
+
+      .titulo-casos {
+        font-size: 30px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <main class="container">
+  <!-- TELA INICIAL -->
 
-    <div class="tag">
-      DESAFIO CLÍNICO
-    </div>
+  <section id="inicio" class="tela">
 
-    <h1>
-      ANTÔNIO <span class="versus">×</span> MARIA
-    </h1>
+    <main class="container">
 
-    <h2>
-      Diagnóstico diferencial nos transtornos neurocognitivos
-    </h2>
+      <div class="tag">
+        DESAFIO CLÍNICO
+      </div>
 
-    <p>
-      Analise as informações clínicas, formule hipóteses e acompanhe
-      como novas evidências podem modificar o seu raciocínio.
-    </p>
+      <h1>
+        ANTÔNIO <span class="versus">×</span> MARIA
+      </h1>
 
-    <button type="button">
-      CONHECER OS CASOS
-    </button>
+      <h2>
+        Diagnóstico diferencial nos transtornos neurocognitivos
+      </h2>
 
-    <div class="rodape">
-      Atividade acadêmica • Avaliação Psicológica na Velhice
-    </div>
+      <p>
+        Analise as informações clínicas, formule hipóteses e acompanhe
+        como novas evidências podem modificar o seu raciocínio.
+      </p>
 
-  </main>
+      <br>
+
+      <button type="button" onclick="mostrarCasos()">
+        CONHECER OS CASOS
+      </button>
+
+      <div class="rodape">
+        Atividade acadêmica • Avaliação Psicológica na Velhice
+      </div>
+
+    </main>
+
+  </section>
+
+
+  <!-- TELA DE APRESENTAÇÃO DOS CASOS -->
+
+  <section id="casos" class="tela">
+
+    <main class="container">
+
+      <div class="tag">
+        PRIMEIRO CONTATO
+      </div>
+
+      <h2 class="titulo-casos">
+        Conheça Antônio e Maria
+      </h2>
+
+      <p class="instrucao">
+        Leia atentamente as informações iniciais.
+        Neste momento, trabalhe apenas com os dados apresentados.
+      </p>
+
+      <div class="grade-casos">
+
+        <article class="caso">
+
+          <h3>ANTÔNIO</h3>
+
+          <div class="idade">
+            74 anos
+          </div>
+
+          <p>
+            Aposentado. Comparece acompanhado da esposa.
+            Durante a entrevista, mantém-se orientado,
+            conversa adequadamente e tende a minimizar
+            possíveis dificuldades.
+          </p>
+
+          <div class="dado-clinico">
+            MEEM: 27/30
+          </div>
+
+        </article>
+
+
+        <article class="caso">
+
+          <h3>MARIA</h3>
+
+          <div class="idade">
+            71 anos
+          </div>
+
+          <p>
+            Aposentada. Procura avaliação muito preocupada
+            com sua memória. Relata esquecer nomes, entrar
+            em um cômodo e esquecer o que iria fazer e precisar
+            recorrer a listas com maior frequência.
+          </p>
+
+          <div class="dado-clinico">
+            “Acho que estou ficando com demência.”
+          </div>
+
+        </article>
+
+      </div>
+
+      <p class="aviso">
+        As informações são deliberadamente incompletas.
+        Novas evidências serão apresentadas ao longo da atividade.
+      </p>
+
+      <button type="button">
+        COMEÇAR INVESTIGAÇÃO →
+      </button>
+
+    </main>
+
+  </section>
+
+
+  <script>
+
+    function mostrarCasos() {
+
+      document.getElementById("inicio").style.display = "none";
+
+      document.getElementById("casos").style.display = "flex";
+
+      window.scrollTo(0, 0);
+    }
+
+  </script>
 
 </body>
 
