@@ -66,7 +66,8 @@ botaoEtapa1.addEventListener("click", async () => {
 
     botaoEtapa1.disabled = true;
     botaoEtapa1.textContent = "RESPOSTAS REGISTRADAS ✓";
-
+const botaoContinuar = document.getElementById("continuarEtapa1");
+botaoContinuar.style.display = "inline-block";
     document
       .querySelectorAll(
         'input[name="antonio-etapa1"], input[name="maria-etapa1"]'
