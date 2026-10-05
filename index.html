@@ -442,7 +442,112 @@
   </main>
 
 </section>
+<!-- ETAPA 2 — REVISÃO DA HIPÓTESE -->
+<section id="etapa2" class="tela" style="display: none;">
 
+  <main class="container">
+
+    <span class="tag">ETAPA 2 · REVISÃO DA HIPÓTESE</span>
+
+    <h1>A funcionalidade mudou sua hipótese?</h1>
+
+    <p class="subtitulo">
+      Agora você conhece melhor o funcionamento cotidiano de Antônio e Maria.
+      Reavalie cada caso separadamente.
+    </p>
+
+    <p class="aviso">
+      Considerando as informações disponíveis até este momento,
+      qual hipótese é mais adequada para investigação?
+    </p>
+
+    <div class="casos">
+
+      <!-- ANTÔNIO -->
+      <article class="caso">
+
+        <span class="numero">CASO A</span>
+        <h2>Antônio</h2>
+
+        <p>Selecione a hipótese mais adequada:</p>
+
+        <label>
+          <input type="radio" name="antonio-etapa2" value="envelhecimento">
+          Envelhecimento cognitivo esperado
+        </label>
+
+        <label>
+          <input type="radio" name="antonio-etapa2" value="tnc-leve">
+          Transtorno Neurocognitivo Leve
+        </label>
+
+        <label>
+          <input type="radio" name="antonio-etapa2" value="tnc-maior">
+          Transtorno Neurocognitivo Maior
+        </label>
+
+        <label>
+          <input type="radio" name="antonio-etapa2" value="outra-condicao">
+          Outra condição ou fator pode explicar o quadro
+        </label>
+
+        <label>
+          <input type="radio" name="antonio-etapa2" value="insuficientes">
+          Dados ainda insuficientes
+        </label>
+
+      </article>
+
+      <!-- MARIA -->
+      <article class="caso">
+
+        <span class="numero">CASO B</span>
+        <h2>Maria</h2>
+
+        <p>Selecione a hipótese mais adequada:</p>
+
+        <label>
+          <input type="radio" name="maria-etapa2" value="envelhecimento">
+          Envelhecimento cognitivo esperado
+        </label>
+
+        <label>
+          <input type="radio" name="maria-etapa2" value="tnc-leve">
+          Transtorno Neurocognitivo Leve
+        </label>
+
+        <label>
+          <input type="radio" name="maria-etapa2" value="tnc-maior">
+          Transtorno Neurocognitivo Maior
+        </label>
+
+        <label>
+          <input type="radio" name="maria-etapa2" value="outra-condicao">
+          Outra condição ou fator pode explicar o quadro
+        </label>
+
+        <label>
+          <input type="radio" name="maria-etapa2" value="insuficientes">
+          Dados ainda insuficientes
+        </label>
+
+      </article>
+
+    </div>
+
+    <p class="aviso">
+      <strong>Importante:</strong>
+      escolha a hipótese que melhor orientaria a investigação clínica
+      neste momento. Não estamos estabelecendo um diagnóstico definitivo.
+    </p>
+
+    <button type="button" id="enviarEtapa2">
+      REGISTRAR NOVA HIPÓTESE →
+    </button>
+
+  </main>
+
+</section>
   <script>
 
     function mostrarCasos() {
@@ -463,6 +568,12 @@ function mostrarEtapa1() {
     document.getElementById("evidencia1").style.display = "flex";
     window.scrollTo(0, 0);
 });
+document.getElementById("avancarEvidencia1").addEventListener("click", function() {
+    document.getElementById("evidencia1").style.display = "none";
+    document.getElementById("etapa2").style.display = "flex";
+    window.scrollTo(0, 0);
+});
+    
   </script>
 <script type="module" src="./app.js"></script>
 </body>
