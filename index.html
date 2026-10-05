@@ -276,13 +276,92 @@
         Novas evidências serão apresentadas ao longo da atividade.
       </p>
 
-      <button type="button">
+   <button type="button" onclick="mostrarEtapa1()">
         COMEÇAR INVESTIGAÇÃO →
       </button>
 
     </main>
 
-  </section>
+  <!-- ETAPA 1 — PRIMEIRA HIPÓTESE -->
+<section id="etapa1" class="tela" style="display: none;">
+
+  <main class="container">
+
+    <span class="tag">ETAPA 1 · PRIMEIRA HIPÓTESE</span>
+
+    <h1>O que podemos afirmar até aqui?</h1>
+
+    <p class="subtitulo">
+      Analise Antônio e Maria separadamente.
+      Trabalhe apenas com as informações disponíveis neste momento.
+    </p>
+
+    <p class="aviso">
+      Há evidências suficientes para afirmar a presença de um
+      <strong>transtorno neurocognitivo</strong>?
+    </p>
+
+    <div class="casos">
+
+      <article class="caso">
+        <span class="numero">CASO A</span>
+        <h2>Antônio</h2>
+
+        <p>Selecione sua hipótese:</p>
+
+        <label>
+          <input type="radio" name="antonio-etapa1" value="sim">
+          Sim
+        </label>
+
+        <label>
+          <input type="radio" name="antonio-etapa1" value="nao">
+          Não
+        </label>
+
+        <label>
+          <input type="radio" name="antonio-etapa1" value="insuficientes">
+          Dados insuficientes
+        </label>
+      </article>
+
+
+      <article class="caso">
+        <span class="numero">CASO B</span>
+        <h2>Maria</h2>
+
+        <p>Selecione sua hipótese:</p>
+
+        <label>
+          <input type="radio" name="maria-etapa1" value="sim">
+          Sim
+        </label>
+
+        <label>
+          <input type="radio" name="maria-etapa1" value="nao">
+          Não
+        </label>
+
+        <label>
+          <input type="radio" name="maria-etapa1" value="insuficientes">
+          Dados insuficientes
+        </label>
+      </article>
+
+    </div>
+
+    <p class="aviso">
+      Não procure acertar o diagnóstico. Registre o raciocínio que os
+      dados permitem neste momento.
+    </p>
+
+    <button type="button" id="enviarEtapa1">
+      ENVIAR RESPOSTAS →
+    </button>
+
+  </main>
+
+</section>
 
 
   <script>
@@ -295,7 +374,11 @@
 
       window.scrollTo(0, 0);
     }
-
+function mostrarEtapa1() {
+    document.getElementById("casos").style.display = "none";
+    document.getElementById("etapa1").style.display = "flex";
+    window.scrollTo(0, 0);
+}
   </script>
 <script type="module" src="./app.js"></script>
 </body>
