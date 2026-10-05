@@ -91,3 +91,68 @@ botaoContinuar.style.display = "inline-block";
   }
 
 });
+const botaoEtapa2 = document.getElementById("enviarEtapa2");
+
+botaoEtapa2.addEventListener("click", async () => {
+
+  const usuario = auth.currentUser;
+
+  if (!usuario) {
+    alert("Aguarde alguns segundos. Estamos conectando você à atividade.");
+    return;
+  }
+
+  const antonio = document.querySelector(
+    'input[name="antonio-etapa2"]:checked'
+  );
+
+  const maria = document.querySelector(
+    'input[name="maria-etapa2"]:checked'
+  );
+
+  if (!antonio || !maria) {
+    alert("Escolha uma hipótese para Antônio e para Maria antes de continuar.");
+    return;
+  }
+
+  const resposta = JSON.stringify({
+    antonio: antonio.value,
+    maria: maria.value
+  });
+
+  try {
+
+    await set(
+      ref(db, `respostas/etapa2/${usuario.uid}`),
+      {
+        resposta: resposta,
+        timestamp: serverTimestamp()
+      }
+    );
+
+    botaoEtapa2.disabled = true;
+    botaoEtapa2.textContent = "NOVA HIPÓTESE REGISTRADA ✓";
+
+    document
+      .querySelectorAll(
+        'input[name="antonio-etapa2"], input[name="maria-etapa2"]'
+      )
+      .forEach((campo) => {
+        campo.disabled = true;
+      });
+
+    alert("Sua nova hipótese foi registrada com sucesso.");
+
+  } catch (erro) {
+
+    console.error("Erro ao registrar Etapa 2:", erro);
+
+    if (erro.code === "PERMISSION_DENIED") {
+      alert("Esta etapa já foi respondida neste dispositivo.");
+    } else {
+      alert("Não foi possível registrar sua hipótese. Tente novamente.");
+    }
+
+  }
+
+});
