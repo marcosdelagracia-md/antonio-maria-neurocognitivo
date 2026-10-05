@@ -368,7 +368,80 @@
   </main>
 
 </section>
+<!-- EVIDÊNCIA 1 — FUNCIONALIDADE -->
+<section id="evidencia1" class="tela" style="display: none;">
 
+  <main class="container">
+
+    <span class="tag">EVIDÊNCIA 1 · FUNCIONALIDADE</span>
+
+    <h1>Novas informações surgiram</h1>
+
+    <p class="subtitulo">
+      Compare estas informações com sua hipótese inicial.
+      O que muda no seu raciocínio clínico?
+    </p>
+
+    <div class="casos">
+
+      <article class="caso">
+        <span class="numero">CASO A</span>
+
+        <h2>Antônio</h2>
+
+        <p>
+          A esposa relata que, nos últimos meses, Antônio passou a
+          esquecer pagamentos e já pagou a mesma conta duas vezes.
+        </p>
+
+        <p>
+          Também tem cometido erros na organização dos medicamentos
+          e necessita de supervisão crescente em atividades que
+          anteriormente realizava sozinho.
+        </p>
+
+        <div class="dado-clinico">
+          Há mudança no funcionamento cotidiano relatada por familiar.
+        </div>
+      </article>
+
+
+      <article class="caso">
+        <span class="numero">CASO B</span>
+
+        <h2>Maria</h2>
+
+        <p>
+          Apesar das queixas de memória, Maria continua administrando
+          as próprias finanças e medicamentos, preparando refeições,
+          utilizando transporte e comparecendo aos compromissos
+          de forma independente.
+        </p>
+
+        <p>
+          Para se organizar, utiliza agenda e listas com maior frequência.
+        </p>
+
+        <div class="dado-clinico">
+          A independência nas atividades cotidianas permanece preservada.
+        </div>
+      </article>
+
+    </div>
+
+    <p class="aviso">
+      <strong>Agora pense:</strong><br>
+      esta nova informação fortalece, enfraquece ou modifica
+      sua hipótese inicial para cada caso?
+    </p>
+
+    <button type="button" id="avancarEvidencia1">
+      REAVALIAR MINHA HIPÓTESE →
+    </button>
+
+  </main>
+
+</section>
 
   <script>
 
@@ -385,6 +458,11 @@ function mostrarEtapa1() {
     document.getElementById("etapa1").style.display = "flex";
     window.scrollTo(0, 0);
 }
+    document.getElementById("continuarEtapa1").addEventListener("click", function() {
+    document.getElementById("etapa1").style.display = "none";
+    document.getElementById("evidencia1").style.display = "flex";
+    window.scrollTo(0, 0);
+});
   </script>
 <script type="module" src="./app.js"></script>
 </body>
