@@ -3,7 +3,7 @@ import { getDatabase } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAU8hY5U5D61U3CnJofeQgq1r8Uxa0dgSy",
+  apiKey: "AIzaSyAU8hY5U5D61U3CnJofeQgq1r8Uxa0dgsY",
   authDomain: "antonio-maria-neurocognitivo.firebaseapp.com",
   databaseURL: "https://antonio-maria-neurocognitivo-default-rtdb.firebaseio.com",
   projectId: "antonio-maria-neurocognitivo",
