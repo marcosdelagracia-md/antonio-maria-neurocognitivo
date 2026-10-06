@@ -644,6 +644,11 @@ function mostrarEtapa1() {
     document.getElementById("evidencia1").style.display = "flex";
     window.scrollTo(0, 0);
 });
+    document.getElementById("continuarEtapa2").addEventListener("click", function() {
+    document.getElementById("etapa2").style.display = "none";
+    document.getElementById("evidencia2").style.display = "flex";
+    window.scrollTo(0, 0);
+});
 document.getElementById("avancarEvidencia1").addEventListener("click", function() {
     document.getElementById("evidencia1").style.display = "none";
     document.getElementById("etapa2").style.display = "flex";
