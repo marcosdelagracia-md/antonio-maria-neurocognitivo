@@ -132,7 +132,8 @@ botaoEtapa2.addEventListener("click", async () => {
 
     botaoEtapa2.disabled = true;
     botaoEtapa2.textContent = "NOVA HIPÓTESE REGISTRADA ✓";
-
+const botaoContinuarEtapa2 = document.getElementById("continuarEtapa2");
+botaoContinuarEtapa2.style.display = "inline-block";
     document
       .querySelectorAll(
         'input[name="antonio-etapa2"], input[name="maria-etapa2"]'
