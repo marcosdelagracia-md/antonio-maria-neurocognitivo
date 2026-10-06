@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Professor | Antônio × Maria</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f172a;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 8px;
+    }
+
+    .subtitulo {
+      text-align: center;
+      color: #93c5fd;
+      margin-bottom: 35px;
+    }
+
+    .login {
+      max-width: 430px;
+      margin: 80px auto;
+      padding: 32px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 18px;
+    }
+
+    .login h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #erro {
+      color: #fca5a5;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    #painel {
+      display: none;
+    }
+
+    .status {
+      text-align: center;
+      margin-bottom: 28px;
+      color: #86efac;
+      font-weight: bold;
+    }
+
+    .etapa {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+
+    .etapa h2 {
+      margin-top: 0;
+      color: #93c5fd;
+    }
+
+    .casos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .caso {
+      background: #111827;
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .caso h3 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .total {
+      font-size: 15px;
+      color: #94a3b8;
+      margin-bottom: 15px;
+    }
+
+    .resultado {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 12px;
+      margin: 7px 0;
+      background: #1e293b;
+      border-radius: 8px;
+    }
+
+    .numero {
+      font-weight: bold;
+      color: #60a5fa;
+    }
+
+    @media (max-width: 750px) {
+      .casos { grid-template-columns: 1fr; }
+      h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div id="login" class="login">
+      <h2>Painel do Professor</h2>
+      <p style="text-align:center;color:#94a3b8;">
+        Antônio × Maria
+      </p>
+
+      <input id="email" type="email" placeholder="E-mail">
+      <input id="senha" type="password" placeholder="Senha">
+
+      <button id="entrar">ENTRAR NO PAINEL</button>
+
+      <div id="erro"></div>
+    </div>
+
+    <div id="painel">
+
+      <h1>Antônio × Maria</h1>
+
+      <div class="subtitulo">
+        Respostas da turma em tempo real
+      </div>
+
+      <div class="status">
+        ● CONECTADO AO FIREBASE
+      </div>
+
+      <section class="etapa">
+
+        <h2>ETAPA 1 · PRIMEIRA HIPÓTESE</h2>
+
+        <div class="casos">
+
+          <div class="caso">
+            <h3>Antônio</h3>
+            <div class="total" id="total1Antonio">0 respostas</div>
+            <div id="etapa1Antonio"></div>
+          </div>
+
+          <div class="caso">
+            <h3>Maria</h3>
+            <div class="total" id="total1Maria">0 respostas</div>
+            <div id="etapa1Maria"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="etapa">
+
+        <h2>ETAPA 2 · REVISÃO DA HIPÓTESE</h2>
+
+        <div class="casos">
+
+          <div class="caso">
+            <h3>Antônio</h3>
+            <div class="total" id="total2Antonio">0 respostas</div>
+            <div id="etapa2Antonio"></div>
+          </div>
+
+          <div class="caso">
+            <h3>Maria</h3>
+            <div class="total" id="total2Maria">0 respostas</div>
+            <div id="etapa2Maria"></div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+
+<script type="module">
+
+import { auth, db } from "./firebase-config.js";
+
+import {
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+import {
+  ref,
+  onValue
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
+
+const login = document.getElementById("login");
+const painel = document.getElementById("painel");
+const erro = document.getElementById("erro");
+
+
+document.getElementById("entrar").addEventListener("click", async () => {
+
+  erro.textContent = "";
+
+  const email = document.getElementById("email").value.trim();
+  const senha = document.getElementById("senha").value;
+
+  try {
+
+    await signInWithEmailAndPassword(auth, email, senha);
+
+    login.style.display = "none";
+    painel.style.display = "block";
+
+    iniciarPainel();
+
+  } catch (e) {
+
+    console.error(e);
+    erro.textContent = "Não foi possível entrar. Verifique e-mail e senha.";
+
+  }
+
+});
+
+
+function linha(nome, quantidade, total) {
+
+  const porcentagem =
+    total > 0 ? Math.round((quantidade / total) * 100) : 0;
+
+  return `
+    <div class="resultado">
+      <span>${nome}</span>
+      <span class="numero">${quantidade} · ${porcentagem}%</span>
+    </div>
+  `;
+}
+
+
+function contarEtapa(dados, etapa) {
+
+  const antonio = {};
+  const maria = {};
+
+  let totalAntonio = 0;
+  let totalMaria = 0;
+
+  if (dados) {
+
+    Object.values(dados).forEach(item => {
+
+      try {
+
+        const resposta =
+          typeof item.resposta === "string"
+            ? JSON.parse(item.resposta)
+            : item.resposta;
+
+        const a =
+          resposta.antonio ??
+          resposta["antonio-" + etapa];
+
+        const m =
+          resposta.maria ??
+          resposta["maria-" + etapa];
+
+        if (a) {
+          antonio[a] = (antonio[a] || 0) + 1;
+          totalAntonio++;
+        }
+
+        if (m) {
+          maria[m] = (maria[m] || 0) + 1;
+          totalMaria++;
+        }
+
+      } catch (e) {
+        console.warn("Resposta ignorada:", item);
+      }
+
+    });
+
+  }
+
+  return {
+    antonio,
+    maria,
+    totalAntonio,
+    totalMaria
+  };
+}
+
+
+function mostrar(containerId, contagem, total) {
+
+  const container = document.getElementById(containerId);
+
+  if (total === 0) {
+    container.innerHTML =
+      '<div class="resultado"><span>Aguardando respostas...</span></div>';
+    return;
+  }
+
+  container.innerHTML = Object.entries(contagem)
+    .sort((a, b) => b[1] - a[1])
+    .map(([nome, qtd]) => linha(nome, qtd, total))
+    .join("");
+}
+
+
+function iniciarPainel() {
+
+  onValue(ref(db, "respostas/etapa1"), snapshot => {
+
+    const r = contarEtapa(snapshot.val(), "etapa1");
+
+    document.getElementById("total1Antonio").textContent =
+      `${r.totalAntonio} respostas`;
+
+    document.getElementById("total1Maria").textContent =
+      `${r.totalMaria} respostas`;
+
+    mostrar("etapa1Antonio", r.antonio, r.totalAntonio);
+    mostrar("etapa1Maria", r.maria, r.totalMaria);
+
+  });
+
+
+  onValue(ref(db, "respostas/etapa2"), snapshot => {
+
+    const r = contarEtapa(snapshot.val(), "etapa2");
+
+    document.getElementById("total2Antonio").textContent =
+      `${r.totalAntonio} respostas`;
+
+    document.getElementById("total2Maria").textContent =
+      `${r.totalMaria} respostas`;
+
+    mostrar("etapa2Antonio", r.antonio, r.totalAntonio);
+    mostrar("etapa2Maria", r.maria, r.totalMaria);
+
+  });
+
+}
+
+</script>
+
+</body>
+</html>
