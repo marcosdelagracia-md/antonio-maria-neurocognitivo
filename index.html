@@ -548,6 +548,80 @@
   </main>
 
 </section>
+  <!-- EVIDÊNCIA 2 — CONTEXTO CLÍNICO -->
+<section id="evidencia2" class="tela" style="display: none;">
+
+    <main class="container">
+
+        <span class="tag">EVIDÊNCIA 2 · CONTEXTO CLÍNICO</span>
+
+        <h1>Há outros fatores a considerar</h1>
+
+        <p class="subtitulo">
+            Novas informações surgiram. Antes de sustentar uma hipótese,
+            considere outros fatores que podem influenciar o funcionamento cognitivo.
+        </p>
+
+        <div class="casos">
+
+            <article class="caso">
+
+                <span class="numero">CASO A</span>
+                <h2>Antônio</h2>
+
+                <p>
+                    Nas últimas semanas, Antônio apresentou piora mais evidente
+                    das dificuldades cognitivas.
+                </p>
+
+                <p>
+                    A esposa relata que ele utiliza vários medicamentos e que
+                    houve recentemente alteração em sua prescrição. Também refere
+                    sono fragmentado e sonolência durante o dia.
+                </p>
+
+                <div class="dado-clinico">
+                    Medicamentos, sono e curso temporal precisam ser considerados.
+                </div>
+
+            </article>
+
+            <article class="caso">
+
+                <span class="numero">CASO B</span>
+                <h2>Maria</h2>
+
+                <p>
+                    Maria relata que, nos últimos meses, tem dormido mal,
+                    sente-se frequentemente preocupada e apresenta redução do
+                    interesse por atividades que antes considerava prazerosas.
+                </p>
+
+                <p>
+                    Diz perceber suas falhas de memória com muita intensidade
+                    e teme constantemente estar desenvolvendo demência.
+                </p>
+
+                <div class="dado-clinico">
+                    Sono, humor e ansiedade podem influenciar a queixa cognitiva.
+                </div>
+
+            </article>
+
+        </div>
+
+        <p class="aviso">
+            <strong>Novos fatores podem estar contribuindo para o desempenho cognitivo.</strong>
+            A hipótese anterior deve ser mantida, modificada ou ampliada?
+        </p>
+
+        <button type="button" id="avancarEvidencia2">
+            CONTINUAR INVESTIGAÇÃO →
+        </button>
+
+    </main>
+  
+</section>
   <script>
 
     function mostrarCasos() {
@@ -573,7 +647,9 @@ document.getElementById("avancarEvidencia1").addEventListener("click", function(
     document.getElementById("etapa2").style.display = "flex";
     window.scrollTo(0, 0);
 });
-    
+ document.getElementById("avancarEvidencia2").addEventListener("click", function() {
+    alert("A próxima etapa da investigação será apresentada em seguida.");
+});   
   </script>
 <script type="module" src="./app.js"></script>
 </body>
